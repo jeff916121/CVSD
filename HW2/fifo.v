@@ -1,7 +1,7 @@
 // module fifo (data_i, write_i, read_i, full_o, empty_o, data_o, clk, rst_n);
-module fifo (data_i, write_i, read_i, full_o, empty_o, data_o, clk, rst_n,FIFO_sent);
+module fifo (data_i, write_i, read_i, full_o, empty_o, data_o, clk, rst_n,FIFO_sent,valid_i);
     parameter DWIDTH = 8, FDEPTH = 5;
-
+	input wire valid_i; 
     input wire [DWIDTH-1:0] data_i;
     input wire write_i, read_i;
     output wire full_o, empty_o;
@@ -71,7 +71,16 @@ module fifo (data_i, write_i, read_i, full_o, empty_o, data_o, clk, rst_n,FIFO_s
                 // data_o <= mem[FDEPTH-cnt];  
 
                 // write
-                if(data_i!=mem[4]) begin
+				if((data_i==mem[4]) && valid_i ) begin
+					mem[0] <=mem[1];
+                    mem[1] <=mem[2];
+                    mem[2] <=mem[3];
+                    mem[3] <=mem[4];
+                    mem[4] <= data_i ;  
+				
+				end
+				
+                else if(data_i!=mem[4]) begin
                     mem[0] <=mem[1];
                     mem[1] <=mem[2];
                     mem[2] <=mem[3];
@@ -96,7 +105,16 @@ module fifo (data_i, write_i, read_i, full_o, empty_o, data_o, clk, rst_n,FIFO_s
             end
             //write
             else if (write_i && cnt!=3'd5) begin 
-                if(data_i!=mem[4]) begin
+			
+				if((data_i==mem[4]) && valid_i ) begin
+                    mem[0] <=mem[1];
+                    mem[1] <=mem[2];
+                    mem[2] <=mem[3];
+                    mem[3] <=mem[4];
+                    mem[4] <= data_i;
+                    cnt <= cnt + 1'b1;        
+                end
+                else if(data_i!=mem[4]) begin
                     mem[0] <=mem[1];
                     mem[1] <=mem[2];
                     mem[2] <=mem[3];

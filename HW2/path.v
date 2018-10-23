@@ -20,6 +20,7 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
     output reg [DWIDTH-1:0] data_o;
     output reg valid_o;
 
+	reg flag;
     
 
 
@@ -60,7 +61,7 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
         if(valid_i && !full) begin
             write_i = 1'b1;                
         end
-        else if(full && read_i) begin
+        else if(stop1_o && stop2_o) begin
             write_i = 1'b1;     
         end
         else begin
@@ -99,6 +100,21 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
         //     write_i=0;
         // else
         //     write_i=write_i;
+		
+		
+		if(!read_i&&bypass) begin
+            req_o = 1'b0;
+			req = 1'b0;
+			valid_o =1'b0;
+			
+        end
+
+        else begin
+            req_o = req_o;
+			req = req;
+			valid_o =valid_o;
+        end
+		
 
     end
 
@@ -109,30 +125,42 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
 
     // choose data_o or bypass to Memory
     always@(*) begin
+	
+		if(flag) begin
+			read_i=0;
+			req_o = 1'b0;
+			req = 1'b0;
+			valid_o =1'b0;
+			
+        end
+
+        else  begin
+		    read_i =read_i;
+            req_o = req_o;
+			req = req;
+			valid_o =valid_o;
+        end
 
         
 
-        if(!read_i&&!bypass) begin
-            valid_o = 1'b0;
-        end
-        else if(!req|| !gnt_i) begin
-            valid_o = 1'b0;
-        end
-
-        else begin
-            valid_o = valid_o;
-        end
+        
    
 
         if(bypass&&!write_i) begin
         //revise this
             data_otemp = data_i;
+			flag=0;
         end
         else if(!empty) begin
             data_otemp = fifo_o;
+			flag=0;
         end
+		/*else if(bypass) begin
+			data_otemp = data_i;
+		end*/
         else begin
-            data_otemp = 8'b0;
+			data_otemp =data_otemp ;
+            flag=1;
         end
 
     
@@ -183,6 +211,15 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
 
         end 
         else begin
+		
+		
+        if(!req|| !gnt_i) begin
+            valid_o <= 1'b0;
+        end
+
+        else begin
+            valid_o = valid_o;
+        end
 
             if(cnt!=3'd5 && stop1_o && stop2_o) begin
                 write_i <=1'b1;
@@ -281,11 +318,16 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
             /* ========================== */
 
             if(gnt_i) begin
-                valid_o <= 1'b1;
-                data_o <= data_otemp;
+                
+				if(!flag) begin
+					valid_o <= 1'b1;
+					data_o <= data_otemp;
+				
+				end
             end
             else begin
                 valid_o <= 1'b0;
+				
                 data_o <= data_o;
             end
 
@@ -309,7 +351,7 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
     fifo fifo_inst (.data_i(data_i), .write_i(write_i), .read_i(read_i),
                     .full_o(full), .empty_o(empty), // flag
                     .data_o(fifo_o), .clk(clk), .rst_n(rst_n),
-                    .FIFO_sent(FIFO_sent)
+                    .FIFO_sent(FIFO_sent),.valid_i(valid_i)
                     );
 
 endmodule
