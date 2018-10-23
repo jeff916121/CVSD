@@ -1,2 +1,2 @@
-ncverilog tb.v -f rtl_file +access+rwc +define+VCD +define+FSDB +define+MDA
-verdi -ssf tb.fsdb &
+source 00.tcl
+source 01_rtl_simulation.tcl
