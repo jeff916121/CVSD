@@ -4,7 +4,7 @@
 `define EXP       "./sram_a.dat"
 `define DEL       1
 `include          "./rom_128x8_a.v"
-`include          "Memory/sram_1024x8_t13/sram_1024x8.v"
+`include          "Memory/sram_1024x8_t13/sram_1024x8_t13.v"
 
 module test;
 reg         clk;
@@ -47,7 +47,7 @@ reg         over, fid;
                     );
          
   
-  sram_1024x8 u_sram(
+  sram_1024x8_t13 u_sram(
                        .Q        (sram_q    ),
                        .CLK      (clk       ),
                        .CEN      (1'b0      ),
