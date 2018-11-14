@@ -218,7 +218,7 @@ module path(clk, rst_n, data1_i, data2_i, valid1_i, valid2_i, data_o, req_o, gnt
         end
 
         else begin
-            valid_o = valid_o;
+            valid_o <= valid_o;
         end
 
             if(cnt!=3'd5 && stop1_o && stop2_o) begin
