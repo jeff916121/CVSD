@@ -1,5 +1,10 @@
 # CVSD HW3
 
+ <iframe src="https://drive.google.com/file/d/1aJtmzR4OQc-sjiC0qezQIJeyrPyAIwWI/preview" width="640" height="480"></iframe>
+ 
+ <iframe src="https://drive.google.com/file/d/1t9SbSipo7-stfj2Kv4ewWKy6nHMXJGpu/preview" width="640" height="480"></iframe>
+ 
+ <iframe src="https://drive.google.com/file/d/12VopiGX3WMRTkBibyZ832XO60CvynQQt/preview" width="640" height="480"></iframe>
  
 
 ## 題目說明
@@ -202,9 +207,112 @@ end
 類似方法二，只是每個點都有一個shift register，然後開1024組，每次中心點都被assign成周遭最小的值，這招更新蠻快的但相對硬體也會較大
 
 
+
+
 4.**方法四**
 Queue
-個人最喜歡這招，時間非常快，但especially for sparse matrix
+個人最喜歡這招，時間非常快，ROM的讀取、Queue的處理、SRAM的reset可以全部平行運作，只需要```1024+前景pixels的個數```個clock cycles，但especially for **sparse** matrix
+
+
+**想法**
+把ROM的值讀出來，存到ROM map，再把ROM map中有前景的位址轉到Queue中，一次只會處理一個pattern，最後再根據Queue的位置，寫到SRAM。<br/>
+
+**需要**
+(1)一個ROM map:    [7:0] ROM [0:127]
+利用這個map來尋找需要被標記的Pattern，一次只會處理一種Pattern
+(2)一個Queue:    reg [9:0] LinkedList [0:LinkDEPTH-1]
+tail代表掃到前景的位址要放入Queue的哪個index
+head代表這一組Pattern的頭是誰
+pourindex代表下一個要被倒出來拜訪八個方位的member在Queue的哪個index
+a.利用head讀取New pattern頭的位址，掃完一組pattern後就可以從head的地方搜尋下一組pattern頭的位址
+b.利用tail擺入同一個pattern member的位址
+c.利用pourindex依序拜訪Queue中的元素，倒出位址後去鎖其它的pattern member
+
+**困難之處**
+如果不是Sparse Matrix，那就gain不到任何好處
+
+**步驟**
+1.把ROM的值讀到ROM map、SRAM**同時間**開始做Reset
+2.套用下方的演算法，把ROM map的資訊**轉**到Queue
+3.透過Queue的值**覆寫**SRAM
+
+**演算法步驟**
+(1)**Reset Queue**並同時間開始Reset SRAM
+一開始tail=1，所以掃到前景的位址可以直接放進來
+head=0，預留一個0，作為Label數字的判斷
+pourindex=0，一開始還沒有member可以倒出來鎖定
+
+```verilog=
+tail <= 8'd1;
+head <= 8'd0;
+pourindex <= 8'd0;
+```
+
+(2)尋找New pattern**起點**:掃描x和y，當在ROM map中遇到為1的位置停下來，並把它的位址存到Queue中，然後把它從ROM map中擦掉
+根據**tail**的index，把掃到前景的位址放入Queue中
+head中會存New pattern的頭被放Queue的哪個index
+pourindex代表下一個要被倒出來拜訪八個方位的member在Queue的哪個index
+
+```verilog=
+head <= head + 8'd1;
+LinkedList[ (head + 8'd1) ] <= {sweepX,sweepY};
+tail <= tail + 8'd1;
+pourindex <= pourindex + 8'd1;
+ROM_MEM[sweepX][sweepY] <= 1'b0;
+```
+
+(3)藉由**pourindex**，**倒出pattern member**，對照ROM map**鎖定**八個方位的pattern member的位址，並**一一**放入Queue中
+```verilog=
+if( ROM_MEM[八個方位的x][八個方位的y] == 1'b1) begin
+LinkedList[tail] <= {八個方位的x,八個方位的y};
+ROM_MEM [八個方位的x][八個方位的y] <= 1'b0;
+tail <= tail + 8'd1 ;
+end
+```
+
+(4)重複(2)~(3)的動作，直到把同一組Pattern掃完一遍(如果倒出來的member在ROM map中的八個方位已經沒有人可以拜訪)，並在Queue中**留下一個0**(隔板)做為Label數字的判斷。再藉由head的值，重新去掃下一組New pattern
+
+**如果八個方位還有人可以拜訪**，那就去一一鎖定，並加入Queue中，要一一鎖定的原因是因為如果一次把8個方位的位址放進去，那index在處理上會比較複雜，而且我們不需要做太快，因為這邊不是bottleneck，瓶頸在於寫SRAM需要1024個clock cycles，而我們在處理Queue的運算已經夠快了
+```verilog=
+sweepX <= LinkedList[pourindex][9:3]  ;
+sweepY <= LinkedList[pourindex][2:0]  ;
+pourindex <= pourindex + 8'd1;
+```
+**如果八個方位已經沒有人可以再拜訪**，倒出**head** index的位址，去重新掃下一組New pattern
+```verilog=
+sweepX <= LinkedList[head][9:3]  ;
+sweepY <= LinkedList[head][2:0]  ;
+head <= tail;
+tail <= tail + 8'd1 ;
+pourindex <= tail ;
+```
+
+(5)重覆(2)~(4)的動作，直到掃到ROM map的結束
+
+```verilog=
+if(sweepX == 7'd127) begin
+    sweep_reg <= 1'd1;
+end
+```
+
+(6)根據Queue的資訊，把Label的值寫入SRAM，如果Queue中存的是0(Pattern間的隔板)，則會把Label的數字加一
+
+```verilog
+sweep_index <= sweep_index + 8'd1;
+if(sweep_index == tail) begin
+    finish_reg <= 1'b1;
+end
+else if(LinkedList[sweep_index]==10'd0) begin
+    label <= label + 3'd1;
+end
+else begin
+    sram_a_delay_reg <= ({3'd0 , LinkedList[sweep_index][9:3]} << 3) + ( 10'd7 - LinkedList[sweep_index][2:0]) ;
+    sram_d_reg <= { 5'd0 , label_delay } ;
+end
+```
+
+
+
 
 [HW3 Github](https://github.com/jeff916121/CVSD/tree/master/HW3)
 
