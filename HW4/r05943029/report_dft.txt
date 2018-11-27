@@ -1,0 +1,198 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Mon Nov 26 21:56:10 2018
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: FFT0/cnt_reg_3_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: FFT0/stg_reg_reg_13__31_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FAS                tsmc13_wl10           slow
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  FFT0/cnt_reg_3_/CK (SDFFRX2)                            0.00 #     0.50 r
+  FFT0/cnt_reg_3_/QN (SDFFRX2)                            0.38       0.88 r
+  FFT0/U431/Y (AND4X1)                                    0.27       1.15 r
+  FFT0/U398/Y (BUFX4)                                     0.12       1.27 r
+  FFT0/U348/Y (BUFX12)                                    0.09       1.36 r
+  FFT0/U407/Y (INVX4)                                     0.05       1.41 f
+  FFT0/U328/Y (INVX3)                                     0.10       1.51 r
+  FFT0/U191/Y (INVX4)                                     0.22       1.73 f
+  FFT0/U922/Y (OA22XL)                                    0.36       2.09 f
+  FFT0/U3090/Y (NAND4X2)                                  0.30       2.39 r
+  FFT0/mult_237/a_1_ (FFT_ultrafast2_shift_DW_mult_uns_11)
+                                                          0.00       2.39 r
+  FFT0/mult_237/U962/Y (XNOR2X1)                          0.35       2.74 r
+  FFT0/mult_237/U726/Y (NAND2X1)                          0.17       2.90 f
+  FFT0/mult_237/U1297/Y (CLKBUFX3)                        0.32       3.23 f
+  FFT0/mult_237/U1239/Y (OAI22XL)                         0.33       3.56 r
+  FFT0/mult_237/U1238/S (ADDHXL)                          0.38       3.94 r
+  FFT0/mult_237/U1275/CO (CMPR42X1)                       0.60       4.53 f
+  FFT0/mult_237/U1160/S (CMPR42X1)                        0.39       4.93 f
+  FFT0/mult_237/U1108/S (CMPR42X1)                        0.31       5.24 r
+  FFT0/mult_237/U846/Y (NOR2X1)                           0.17       5.41 f
+  FFT0/mult_237/U985/Y (NOR2X1)                           0.25       5.66 r
+  FFT0/mult_237/U801/Y (NAND2XL)                          0.14       5.80 f
+  FFT0/mult_237/U800/Y (OAI21XL)                          0.32       6.12 r
+  FFT0/mult_237/U775/Y (BUFX4)                            0.13       6.25 r
+  FFT0/mult_237/U790/Y (AOI21X1)                          0.14       6.39 f
+  FFT0/mult_237/U798/Y (OR2X8)                            0.14       6.53 f
+  FFT0/mult_237/U799/Y (NAND2X8)                          0.04       6.57 r
+  FFT0/mult_237/U738/Y (AOI21X1)                          0.13       6.69 f
+  FFT0/mult_237/U982/Y (OAI21X1)                          0.36       7.05 r
+  FFT0/mult_237/U714/Y (AOI21X4)                          0.13       7.18 f
+  FFT0/mult_237/U713/Y (OAI21X4)                          0.13       7.30 r
+  FFT0/mult_237/U734/Y (AOI21X1)                          0.14       7.44 f
+  FFT0/mult_237/U735/Y (OAI21X1)                          0.29       7.73 r
+  FFT0/mult_237/U979/Y (AOI21X1)                          0.19       7.93 f
+  FFT0/mult_237/U736/Y (OAI21X1)                          0.32       8.25 r
+  FFT0/mult_237/U702/Y (AOI21X2)                          0.14       8.39 f
+  FFT0/mult_237/U701/Y (OAI21X1)                          0.27       8.66 r
+  FFT0/mult_237/U839/Y (AO21XL)                           0.24       8.90 r
+  FFT0/mult_237/U838/Y (XNOR2X1)                          0.18       9.08 r
+  FFT0/mult_237/product_31_ (FFT_ultrafast2_shift_DW_mult_uns_11)
+                                                          0.00       9.08 r
+  FFT0/sub_240/B[31] (FFT_ultrafast2_shift_DW01_sub_26)
+                                                          0.00       9.08 r
+  FFT0/sub_240/U378/Y (CLKINVX1)                          0.15       9.23 f
+  FFT0/sub_240/U267/Y (OR2X1)                             0.21       9.44 f
+  FFT0/sub_240/U346/Y (NAND2X1)                           0.11       9.55 r
+  FFT0/sub_240/U291/Y (XNOR2X1)                           0.18       9.74 f
+  FFT0/sub_240/DIFF_31_ (FFT_ultrafast2_shift_DW01_sub_26)
+                                                          0.00       9.74 f
+  FFT0/U50/Y (INVX6)                                      0.14       9.88 r
+  FFT0/U49/Y (OAI221X4)                                   0.20      10.08 f
+  FFT0/stg_reg_reg_13__31_/D (SDFFXL)                     0.00      10.08 f
+  data arrival time                                                 10.08
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.50      10.50
+  clock uncertainty                                      -0.10      10.40
+  FFT0/stg_reg_reg_13__31_/CK (SDFFXL)                    0.00      10.40 r
+  library setup time                                     -0.31      10.09
+  data required time                                                10.09
+  --------------------------------------------------------------------------
+  data required time                                                10.09
+  data arrival time                                                -10.08
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1
+
+
+
+Warning: Main library 'dw_foundation.sldb' does not specify the following units required for power: 'Leakage Power, Capacitance, Voltage, Time'. (PWR-424)
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Mon Nov 26 21:56:12 2018
+****************************************
+
+
+Library(s) Used:
+
+    typical (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/typical.db)
+
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+FAS                    tsmc13_wl10       slow
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = Unitless
+    Capacitance Units = Unitless
+    Time Units = Unitless
+    Dynamic Power Units = Unitless    (derived from V,C,T units)
+    Leakage Power Units = Unitless
+
+
+  Cell Internal Power  =  14.0086    (49%)
+  Net Switching Power  =  14.6695    (51%)
+                         ---------
+Total Dynamic Power    =  28.6781   (100%)
+
+Cell Leakage Power     = 70730072.0000 
+
+Error: Either dynamic power or leakage power, in the library, is unitless. Unable to display complete power group summary. (PWR-799)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000               NA   (     N/A)
+memory             0.0000            0.0000            0.0000               NA   (     N/A)
+black_box          0.0000            0.0000            0.0000               NA   (     N/A)
+clock_network      0.0000            0.0000            0.0000               NA   (     N/A)
+register           9.2614            1.2635        2.4729e+07               NA   (     N/A)
+sequential         0.0000            0.0000            0.0000               NA   (     N/A)
+combinational      4.7472           13.4060        4.6001e+07               NA   (     N/A)
+--------------------------------------------------------------------------------------------------
+Total             14.0086           14.6695        7.0730e+07               NA        
+1
+
+
+
+ 
+****************************************
+Report : area
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Mon Nov 26 21:56:10 2018
+****************************************
+
+Library(s) Used:
+
+    typical (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/typical.db)
+
+Number of ports:                         6811
+Number of nets:                         21707
+Number of cells:                        12414
+Number of combinational cells:           9697
+Number of sequential cells:              2617
+Number of macros/black boxes:               0
+Number of buf/inv:                       2586
+Number of references:                      10
+
+Combinational area:             162724.647648
+Buf/Inv area:                    22434.535406
+Noncombinational area:           89858.656784
+Macro/Black Box area:                0.000000
+Net Interconnect area:         1683695.529236
+
+Total cell area:                252583.304432
+Total area:                    1936278.833668
+1
+
+
+
+

@@ -1,0 +1,53 @@
+(A)
+A-1.How many flip-flops are chained?
+2605 DFFs and 26 chains
+
+A-2.How many scan cells in every scan chain, respectively?
+100~101¡Ascan chain 1~5 contain 101 cells, scan chain 6~26 contain 100 cells.
+
+A-3.What are the inputs and outputs of these scan chains?
+test_siX --> test_soX and where X is 1 to 26
+
+A-4.What is the name of the scan enable pin for your scan chain?
+test_se gotten from FAS_dft.scan_path
+
+
+(B)
+B-1.What is the area before scan chain insertion?
+228212.038487 um^2
+
+B-2.What is the area after scan chain insertion?
+252583.304432 um^2
+
+B-3.How much is the area overhead percentage of scan chain?
+(252583.304432-228212.038487)/228212.038487 = 0.10679220126 = 10.6 %
+
+B-4.Try to explain why scan chain introduces area overhead.
+We synthesis scan chain and MUX so the area grows up.
+
+(C) Ignore the input external and output external delay.
+C-1.How long (ns) is the critical path delay before scan chain insertion?
+data arrival time 10.27 + library setup time 0.12 = 10.39 ns
+
+C-2.How long the critical path after scan chain insertion?
+data arrival time 10.08 + library setup time 0.31 = 10.39 ns
+
+C-3.How many percent is the path delay overhead?
+(10.39-10.39)/10.39 = 0%
+
+C-4.Sometimes, the individual gate delay changes in the critical path. Try to explain why?
+Insert MUX and FF will enlarge the parasitic capacitance or we call it the loading , and hence make the delay larger.
+
+
+(D)
+D-1.How many total faults (uncollapsed) are there in the circuit?
+103564
+
+D-2.How many patterns do we have?
+193
+
+D-3.What is the test coverage (%)?
+99.81%
+
+D-4.What is the fault coverage (%)?
+99.74%

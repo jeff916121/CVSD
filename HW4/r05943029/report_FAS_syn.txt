@@ -1,0 +1,200 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Mon Nov 26 21:55:45 2018
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: fir_filter0/temp_mul_add_fir_reg_9__1_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fir_filter0/fir_d_reg_2_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  FAS                tsmc13_wl10           slow
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.50       0.50
+  fir_filter0/temp_mul_add_fir_reg_9__1_/CK (DFFQX1)      0.00 #     0.50 r
+  fir_filter0/temp_mul_add_fir_reg_9__1_/Q (DFFQX1)       0.20       0.70 f
+  fir_filter0/add_172_8/B_1_ (FIR_FILTER2_DW01_add_27)
+                                                          0.00       0.70 f
+  fir_filter0/add_172_8/U1_1/CO (ADDFX2)                  0.29       0.99 f
+  fir_filter0/add_172_8/U1_2/CO (ADDFXL)                  0.29       1.28 f
+  fir_filter0/add_172_8/U1_3/CO (ADDFXL)                  0.31       1.60 f
+  fir_filter0/add_172_8/U1_4/CO (ADDFXL)                  0.31       1.91 f
+  fir_filter0/add_172_8/U1_5/CO (ADDFXL)                  0.31       2.22 f
+  fir_filter0/add_172_8/U1_6/CO (ADDFXL)                  0.31       2.53 f
+  fir_filter0/add_172_8/U1_7/CO (ADDFHX1)                 0.22       2.75 f
+  fir_filter0/add_172_8/U1_8/CO (CMPR32X2)                0.24       2.99 f
+  fir_filter0/add_172_8/U1_9/CO (ADDFHX4)                 0.14       3.13 f
+  fir_filter0/add_172_8/U1_10/CO (ADDFHX4)                0.12       3.25 f
+  fir_filter0/add_172_8/U1_11/CO (ADDFX1)                 0.20       3.45 f
+  fir_filter0/add_172_8/U1_12/CO (ADDFXL)                 0.29       3.75 f
+  fir_filter0/add_172_8/U1_13/CO (ADDFHX1)                0.21       3.96 f
+  fir_filter0/add_172_8/U1_14/CO (ADDFXL)                 0.30       4.26 f
+  fir_filter0/add_172_8/U1_15/CO (ADDFXL)                 0.31       4.57 f
+  fir_filter0/add_172_8/U1_16/CO (ADDFXL)                 0.31       4.88 f
+  fir_filter0/add_172_8/U1_17/CO (ADDFXL)                 0.31       5.20 f
+  fir_filter0/add_172_8/U1_18/CO (ADDFXL)                 0.31       5.51 f
+  fir_filter0/add_172_8/U1_19/CO (ADDFXL)                 0.31       5.82 f
+  fir_filter0/add_172_8/U1_20/CO (ADDFXL)                 0.31       6.14 f
+  fir_filter0/add_172_8/U1_21/CO (ADDFXL)                 0.31       6.45 f
+  fir_filter0/add_172_8/U1_22/CO (ADDFXL)                 0.31       6.76 f
+  fir_filter0/add_172_8/U1_23/CO (ADDFXL)                 0.31       7.08 f
+  fir_filter0/add_172_8/U1_24/S (ADDFXL)                  0.39       7.47 r
+  fir_filter0/add_172_8/SUM[24] (FIR_FILTER2_DW01_add_27)
+                                                          0.00       7.47 r
+  fir_filter0/add_172_10/A[24] (FIR_FILTER2_DW01_add_21)
+                                                          0.00       7.47 r
+  fir_filter0/add_172_10/U1_24/CO (ADDFHX2)               0.26       7.73 r
+  fir_filter0/add_172_10/U1_25/S (ADDFX1)                 0.25       7.98 r
+  fir_filter0/add_172_10/SUM[25] (FIR_FILTER2_DW01_add_21)
+                                                          0.00       7.98 r
+  fir_filter0/add_172_14/A[25] (FIR_FILTER2_DW01_add_18)
+                                                          0.00       7.98 r
+  fir_filter0/add_172_14/U1_25/S (ADDFHX2)                0.27       8.25 f
+  fir_filter0/add_172_14/SUM[25] (FIR_FILTER2_DW01_add_18)
+                                                          0.00       8.25 f
+  fir_filter0/add_172_15/B[25] (FIR_FILTER2_DW01_add_16)
+                                                          0.00       8.25 f
+  fir_filter0/add_172_15/U1_25/CO (ADDFX1)                0.27       8.53 f
+  fir_filter0/add_172_15/U1_26/CO (ADDFX2)                0.23       8.75 f
+  fir_filter0/add_172_15/U1_27/CO (ADDFX1)                0.22       8.97 f
+  fir_filter0/add_172_15/U1_28/CO (ADDFX1)                0.22       9.20 f
+  fir_filter0/add_172_15/U1_29/CO (ADDFX2)                0.23       9.43 f
+  fir_filter0/add_172_15/U1_30/CO (ADDFX2)                0.23       9.65 f
+  fir_filter0/add_172_15/U1_31/Y (XOR3X2)                 0.16       9.82 f
+  fir_filter0/add_172_15/SUM_31_ (FIR_FILTER2_DW01_add_16)
+                                                          0.00       9.82 f
+  fir_filter0/U5/Y (BUFX12)                               0.15       9.96 f
+  fir_filter0/U4/Y (INVX6)                                0.10      10.06 r
+  fir_filter0/U53/Y (AO22XL)                              0.21      10.27 r
+  fir_filter0/fir_d_reg_2_/D (DFFRX4)                     0.00      10.27 r
+  data arrival time                                                 10.27
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.50      10.50
+  clock uncertainty                                      -0.10      10.40
+  fir_filter0/fir_d_reg_2_/CK (DFFRX4)                    0.00      10.40 r
+  library setup time                                     -0.12      10.28
+  data required time                                                10.28
+  --------------------------------------------------------------------------
+  data required time                                                10.28
+  data arrival time                                                -10.27
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.01
+
+
+1
+
+
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Mon Nov 26 21:55:46 2018
+****************************************
+
+
+Library(s) Used:
+
+    typical (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/typical.db)
+
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+FAS                    tsmc13_wl10       slow
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+  Cell Internal Power  =   7.5443 mW   (81%)
+  Net Switching Power  =   1.7652 mW   (19%)
+                         ---------
+Total Dynamic Power    =   9.3094 mW  (100%)
+
+Cell Leakage Power     =  61.1877 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register           5.8910            0.4580        1.5907e+07            6.3649  (  67.92%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      1.6533            1.3071        4.5280e+07            3.0057  (  32.08%)
+--------------------------------------------------------------------------------------------------
+Total              7.5442 mW         1.7652 mW     6.1188e+07 pW         9.3706 mW
+1
+
+
+
+ 
+****************************************
+Report : area
+Design : FAS
+Version: N-2017.09-SP2
+Date   : Mon Nov 26 21:55:45 2018
+****************************************
+
+Library(s) Used:
+
+    typical (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/typical.db)
+
+Number of ports:                         6705
+Number of nets:                         21488
+Number of cells:                        12317
+Number of combinational cells:           9600
+Number of sequential cells:              2617
+Number of macros/black boxes:               0
+Number of buf/inv:                       2489
+Number of references:                       9
+
+Combinational area:             158764.614205
+Buf/Inv area:                    18815.679342
+Noncombinational area:           69447.424282
+Macro/Black Box area:                0.000000
+Net Interconnect area:         1434820.716583
+
+Total cell area:                228212.038487
+Total area:                    1663032.755070
+1
+
+
+
+
+
+
