@@ -1,0 +1,62 @@
+  Version: 1 
+  Pad: CORNER0        EN  PCORNERDGZ
+  Pad: ipad_clk 	N
+  Pad: ipad_reset  	N
+  Pad: ipad_rom_q0 	N
+  Pad: ipad_rom_q1  	N
+  Pad: ipad_rom_q2 	N
+  Pad: ipad_rom_q3  	N
+  Pad: ipad_rom_q4  	N
+  Pad: ipad_rom_q5  	N
+  Pad: ipad_rom_q6  	N
+  Pad: ipad_rom_q7  	N
+  Pad: ipad_sram_q0  	N
+  Pad: ipad_CoreVDD1   N   PVDD1DGZ
+  Pad: ipad_CoreVSS1   N   PVSS1DGZ
+  
+  Pad: CORNER1        NW  PCORNERDGZ
+  Pad: ipad_sram_q1    W
+  Pad: ipad_sram_q2     W
+  Pad: ipad_sram_q3     W
+  Pad: ipad_sram_q4    W
+  Pad: ipad_sram_q5     W    
+  Pad: ipad_sram_q6    W
+  Pad: ipad_sram_q7       W
+  Pad: opad_sram_wen     W
+  Pad: opad_finish    W
+  Pad: opad_rom_a0     W
+  Pad: opad_rom_a1     W    
+  Pad: opad_rom_a2     W
+  Pad: opad_rom_a3     W
+  
+  Pad: CORNER2        SW  PCORNERDGZ
+  Pad: ipad_IOVDD1     S   PVDD2POC
+  Pad: ipad_IOVSS1     S   PVSS2DGZ
+  Pad: opad_rom_a4     S
+  Pad: opad_rom_a5      S
+  Pad: opad_rom_a6     S
+  Pad: opad_sram_a0      S
+  Pad: opad_sram_a1     S
+  Pad: opad_sram_a2      S
+  Pad: opad_sram_a3      S
+  Pad: opad_sram_a4      S
+  Pad: opad_sram_a5     S
+  Pad: ipad_CoreVDD2   S   PVDD1DGZ
+  Pad: ipad_CoreVSS2   S   PVSS1DGZ
+  
+  Pad: CORNER3        SE  PCORNERDGZ
+  Pad: ipad_IOVDD2     E   PVDD2DGZ
+  Pad: ipad_IOVSS2     E   PVSS2DGZ
+  Pad: opad_sram_a6      E
+  Pad: opad_sram_a7      E
+  Pad: opad_sram_a8     E     
+  Pad: opad_sram_a9     E
+  Pad: opad_sram_d0      E
+  Pad: opad_sram_d1     E
+  Pad: opad_sram_d2      E
+  Pad: opad_sram_d3     E     
+  Pad: opad_sram_d4      E
+  Pad: opad_sram_d5     E
+  Pad: opad_sram_d6      E
+  Pad: opad_sram_d7      E
+

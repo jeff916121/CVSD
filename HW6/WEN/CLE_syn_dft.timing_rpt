@@ -1,0 +1,66 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : CLE
+Version: N-2017.09-SP2
+Date   : Tue Dec 25 00:11:44 2018
+****************************************
+
+Operating Conditions: slow   Library: slow
+Wire Load Model Mode: top
+
+  Startpoint: temp_reg_2_
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: id_file_reg_1__4_
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  CLE                tsmc13_wl10           slow
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.50       0.50
+  temp_reg_2_/CK (SDFFRX4)                 0.00       0.50 r
+  temp_reg_2_/Q (SDFFRX4)                  0.52       1.02 f
+  U2396/Y (NOR2X2)                         0.73       1.74 r
+  U2278/Y (AO22XL)                         0.37       2.12 r
+  U1935/Y (AOI221XL)                       0.20       2.32 f
+  U2404/Y (OA22X1)                         0.53       2.85 f
+  U2505/Y (OAI221XL)                       0.28       3.13 r
+  U2403/Y (AO22X1)                         0.47       3.61 r
+  U2400/Y (XOR2X1)                         0.34       3.94 f
+  U2276/Y (NOR4X4)                         0.26       4.20 r
+  U2277/Y (NAND4X4)                        0.17       4.37 f
+  U2355/Y (OR2X2)                          0.55       4.92 f
+  U11/Y (NOR4X1)                           0.90       5.81 r
+  U3053/Y (NAND2X1)                        0.52       6.34 f
+  U2362/Y (OAI222X1)                       0.67       7.01 r
+  U2168/Y (CLKINVX1)                       0.77       7.78 f
+  U3045/Y (NOR4BX1)                        0.59       8.37 r
+  U2526/Y (NOR3BX1)                        0.92       9.29 r
+  U3043/Y (AOI222XL)                       0.39       9.68 f
+  U3042/Y (OAI211X1)                       0.30       9.99 r
+  id_file_reg_1__4_/D (SDFFSX1)            0.00       9.99 r
+  data arrival time                                   9.99
+
+  clock clk (rise edge)                   10.00      10.00
+  clock network delay (ideal)              0.50      10.50
+  clock uncertainty                       -0.10      10.40
+  id_file_reg_1__4_/CK (SDFFSX1)           0.00      10.40 r
+  library setup time                      -0.41       9.99
+  data required time                                  9.99
+  -----------------------------------------------------------
+  data required time                                  9.99
+  data arrival time                                  -9.99
+  -----------------------------------------------------------
+  slack (MET)                                         0.00
+
+
+1

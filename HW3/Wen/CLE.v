@@ -4,7 +4,10 @@ input         clk;
 input         reset;
 input  [7:0]  rom_q;
 output [6:0]  rom_a;
+
 input  [7:0]  sram_q;
+wire   [7:0]  sram_q_internal;
+
 output [9:0]  sram_a;
 output [7:0]  sram_d;
 output        sram_wen;
@@ -322,4 +325,23 @@ always@(posedge reset or posedge clk)begin
 		pix_cnt <= (wen) ? pix_cnt + 'd1 : pix_cnt;
 	end
 end
+
+
+sram_1024x8_t13 u_sram(
+                       .Q        (sram_q_internal    ),
+                       .CLK      (clk       ),
+                       .CEN      (1'b0      ),
+                       .WEN      (sram_wen  ),
+                       .A        (sram_a    ),
+                       .D        (sram_d    )
+                     );       
+
+
+
 endmodule
+
+
+
+
+
+

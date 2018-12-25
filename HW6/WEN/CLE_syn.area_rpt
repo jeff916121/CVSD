@@ -1,0 +1,31 @@
+ 
+****************************************
+Report : area
+Design : CLE
+Version: N-2017.09-SP2
+Date   : Tue Dec 25 00:11:35 2018
+****************************************
+
+Library(s) Used:
+
+    slow (File: /home/raid7_2/course/cvsd/CBDK_IC_Contest/CIC/SynopsysDC/db/slow.db)
+    sram_1024x8_t13 (File: /home/raid7_2/user05/r05029/HW3_V3/Memory/sram_1024x8_t13/sram_1024x8_t13_slow_syn.db)
+
+Number of ports:                           94
+Number of nets:                          1890
+Number of cells:                         1667
+Number of combinational cells:           1507
+Number of sequential cells:               156
+Number of macros/black boxes:               1
+Number of buf/inv:                        208
+Number of references:                     146
+
+Combinational area:              14388.859724
+Buf/Inv area:                     1464.856187
+Noncombinational area:            4958.105328
+Macro/Black Box area:            69557.296875
+Net Interconnect area:          245281.233978
+
+Total cell area:                 88904.261927
+Total area:                     334185.495905
+1

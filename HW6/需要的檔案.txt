@@ -1,0 +1,24 @@
+
+--------- gate synthesis ---------
+CLE_DC.sdc
+CLE.v
+main.tcl
+---------
+CLE_syn.v
+CLE_syn.ddc
+CHIP.sdc
+
+--------- scan chain synthesis ---------
+CLE_syn.v
+CHIP.sdc
+scan_chain.tcl
+---------
+CLE_syn.area_rpt
+CLE_syn.timing_rpt
+CLE_syn_dft.area_rpt
+CLE_syn_dft.timing_rpt
+
+CLE_dft.sdc
+CLE_dft.v
+
+
